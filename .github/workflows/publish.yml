@@ -3,12 +3,13 @@ name: Publish
 on:
   release:
     types: [published]
+  workflow_dispatch:
 
 permissions:
   contents: read
 
 concurrency:
-  group: maven-central-${{ github.event.release.tag_name }}
+  group: maven-central-${{ github.event.release.tag_name || github.sha }}
   cancel-in-progress: false
 
 jobs:
@@ -20,18 +21,19 @@ jobs:
       - name: Check out release commit
         uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
         with:
-          ref: ${{ github.event.release.tag_name }}
+          ref: ${{ github.event.release.tag_name || github.sha }}
           fetch-depth: 0
           persist-credentials: false
 
       - name: Verify release tag and ancestry
         shell: bash
         env:
+          EVENT_NAME: ${{ github.event_name }}
           RELEASE_SHA: ${{ github.sha }}
           RELEASE_TAG: ${{ github.event.release.tag_name }}
         run: |
           set -euo pipefail
-          if [[ ! "$RELEASE_TAG" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$ ]]; then
+          if [[ "$EVENT_NAME" == "release" && ! "$RELEASE_TAG" =~ ^v?[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z.-]+)?(\+[0-9A-Za-z.-]+)?$ ]]; then
             echo "Release tag is not valid semantic version: $RELEASE_TAG" >&2
             exit 1
           fi
