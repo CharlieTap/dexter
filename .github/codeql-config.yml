@@ -1,0 +1,3 @@
+name: Dexter CodeQL configuration
+
+threat-models: local

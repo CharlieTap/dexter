@@ -1,0 +1,31 @@
+plugins {
+    `kotlin-dsl`
+    `java-gradle-plugin`
+}
+
+repositories {
+    mavenCentral()
+    gradlePluginPortal()
+    google()
+}
+
+dependencies {
+    implementation(libs.dokka.gradle.plugin)
+    implementation(libs.gradle.maven.publish.plugin)
+    implementation(libs.kotlin.gradle.plugin)
+}
+
+kotlin {
+    jvmToolchain {
+        languageVersion.set(JavaLanguageVersion.of(libs.versions.java.compiler.version.get().toInt()))
+    }
+}
+
+gradlePlugin {
+    plugins {
+        create("publishingConventions") {
+            id = "publishing-conventions"
+            implementationClass = "PublishingConventionsPlugin"
+        }
+    }
+}

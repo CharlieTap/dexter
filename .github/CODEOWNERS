@@ -1,0 +1,9 @@
+# Security-sensitive automation and release configuration requires review by
+# a maintainer.
+/.github/workflows/ @CharlieTap
+/.github/codeql-config.yml @CharlieTap
+/.github/CODEOWNERS @CharlieTap
+/.github/SECURITY.md @CharlieTap
+/gradle/ @CharlieTap
+/build.gradle.kts @CharlieTap
+/settings.gradle.kts @CharlieTap

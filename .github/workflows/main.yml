@@ -1,0 +1,37 @@
+name: CI for main
+
+on:
+  push:
+    branches:
+      - main
+    paths-ignore:
+      - '**/*.md'
+
+permissions:
+  contents: read
+
+jobs:
+
+  abi:
+    uses: ./.github/workflows/task-runner.yml
+    with:
+      runner: ubuntu-latest
+      task: checkKotlinAbi
+    secrets:
+      gradle_encryption_key: ${{ secrets.GRADLE_ENCRYPTION_KEY }}
+
+  lint:
+    uses: ./.github/workflows/task-runner.yml
+    with:
+      runner: ubuntu-24.04-arm
+      task: lintKotlin
+    secrets:
+      gradle_encryption_key: ${{ secrets.GRADLE_ENCRYPTION_KEY }}
+
+  test:
+    uses: ./.github/workflows/task-runner.yml
+    with:
+      runner: ubuntu-latest
+      task: jvmTest testAndroidHostTest
+    secrets:
+      gradle_encryption_key: ${{ secrets.GRADLE_ENCRYPTION_KEY }}

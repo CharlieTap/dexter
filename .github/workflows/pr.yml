@@ -1,0 +1,29 @@
+name: Pull Request and Merge Workflow
+
+on:
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+
+  abi:
+    uses: ./.github/workflows/task-runner.yml
+    with:
+      runner: ubuntu-latest
+      task: checkKotlinAbi
+
+  lint:
+    uses: ./.github/workflows/task-runner.yml
+    with:
+      runner: ubuntu-24.04-arm
+      task: lintKotlin
+
+  test:
+    uses: ./.github/workflows/task-runner.yml
+    with:
+      runner: ubuntu-latest
+      task: jvmTest testAndroidHostTest

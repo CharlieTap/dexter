@@ -1,0 +1,586 @@
+public final class io/github/charlietap/dexter/ArrayKind {
+	public static final field Companion Lio/github/charlietap/dexter/ArrayKind$Companion;
+	public static final synthetic fun box-impl (I)Lio/github/charlietap/dexter/ArrayKind;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (ILjava/lang/Object;)Z
+	public static final fun equals-impl0 (II)Z
+	public fun hashCode ()I
+	public static fun hashCode-impl (I)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (I)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()I
+}
+
+public final class io/github/charlietap/dexter/ArrayKind$Companion {
+	public final fun getBoolean-Q7Aj-u0 ()I
+	public final fun getByte-Q7Aj-u0 ()I
+	public final fun getChar-Q7Aj-u0 ()I
+	public final fun getInt-Q7Aj-u0 ()I
+	public final fun getObject-Q7Aj-u0 ()I
+	public final fun getShort-Q7Aj-u0 ()I
+	public final fun getWide-Q7Aj-u0 ()I
+}
+
+public final class io/github/charlietap/dexter/ArrayType : io/github/charlietap/dexter/ReferenceType {
+	public final fun getElement ()Lio/github/charlietap/dexter/ValueType;
+}
+
+public final class io/github/charlietap/dexter/BinaryOp {
+	public static final field Companion Lio/github/charlietap/dexter/BinaryOp$Companion;
+	public static final synthetic fun box-impl (I)Lio/github/charlietap/dexter/BinaryOp;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (ILjava/lang/Object;)Z
+	public static final fun equals-impl0 (II)Z
+	public fun hashCode ()I
+	public static fun hashCode-impl (I)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (I)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()I
+}
+
+public final class io/github/charlietap/dexter/BinaryOp$Companion {
+	public final fun getAddDouble-oHQBJJM ()I
+	public final fun getAddFloat-oHQBJJM ()I
+	public final fun getAddInt-oHQBJJM ()I
+	public final fun getAddLong-oHQBJJM ()I
+	public final fun getAndInt-oHQBJJM ()I
+	public final fun getAndLong-oHQBJJM ()I
+	public final fun getDivDouble-oHQBJJM ()I
+	public final fun getDivFloat-oHQBJJM ()I
+	public final fun getDivInt-oHQBJJM ()I
+	public final fun getDivLong-oHQBJJM ()I
+	public final fun getMulDouble-oHQBJJM ()I
+	public final fun getMulFloat-oHQBJJM ()I
+	public final fun getMulInt-oHQBJJM ()I
+	public final fun getMulLong-oHQBJJM ()I
+	public final fun getOrInt-oHQBJJM ()I
+	public final fun getOrLong-oHQBJJM ()I
+	public final fun getRemDouble-oHQBJJM ()I
+	public final fun getRemFloat-oHQBJJM ()I
+	public final fun getRemInt-oHQBJJM ()I
+	public final fun getRemLong-oHQBJJM ()I
+	public final fun getShlInt-oHQBJJM ()I
+	public final fun getShlLong-oHQBJJM ()I
+	public final fun getShrInt-oHQBJJM ()I
+	public final fun getShrLong-oHQBJJM ()I
+	public final fun getSubDouble-oHQBJJM ()I
+	public final fun getSubFloat-oHQBJJM ()I
+	public final fun getSubInt-oHQBJJM ()I
+	public final fun getSubLong-oHQBJJM ()I
+	public final fun getUshrInt-oHQBJJM ()I
+	public final fun getUshrLong-oHQBJJM ()I
+	public final fun getXorInt-oHQBJJM ()I
+	public final fun getXorLong-oHQBJJM ()I
+}
+
+public final class io/github/charlietap/dexter/ClassAccess {
+	public static final field Companion Lio/github/charlietap/dexter/ClassAccess$Companion;
+	public static final synthetic fun box-impl (I)Lio/github/charlietap/dexter/ClassAccess;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (ILjava/lang/Object;)Z
+	public static final fun equals-impl0 (II)Z
+	public fun hashCode ()I
+	public static fun hashCode-impl (I)I
+	public static final fun synthetic-AGwYwR0 (I)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (I)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()I
+}
+
+public final class io/github/charlietap/dexter/ClassAccess$Companion {
+	public final fun getPackage-AGwYwR0 ()I
+	public final fun getPackageAbstract-AGwYwR0 ()I
+	public final fun getPackageFinal-AGwYwR0 ()I
+	public final fun getPublic-AGwYwR0 ()I
+	public final fun getPublicAbstract-AGwYwR0 ()I
+	public final fun getPublicFinal-AGwYwR0 ()I
+}
+
+public final class io/github/charlietap/dexter/ClassBuilder {
+	public final fun addStaticField-oISzTZo (Lio/github/charlietap/dexter/DexField;I)V
+	public static synthetic fun addStaticField-oISzTZo$default (Lio/github/charlietap/dexter/ClassBuilder;Lio/github/charlietap/dexter/DexField;IILjava/lang/Object;)V
+	public final fun beginConstructor-oNB9DZ8 (Lio/github/charlietap/dexter/DexConstructor;II)Lio/github/charlietap/dexter/InstanceCodeEmitter;
+	public static synthetic fun beginConstructor-oNB9DZ8$default (Lio/github/charlietap/dexter/ClassBuilder;Lio/github/charlietap/dexter/DexConstructor;IIILjava/lang/Object;)Lio/github/charlietap/dexter/InstanceCodeEmitter;
+	public final fun beginInstanceMethod-iX-AiWQ (Lio/github/charlietap/dexter/DexMethod;II)Lio/github/charlietap/dexter/InstanceCodeEmitter;
+	public static synthetic fun beginInstanceMethod-iX-AiWQ$default (Lio/github/charlietap/dexter/ClassBuilder;Lio/github/charlietap/dexter/DexMethod;IIILjava/lang/Object;)Lio/github/charlietap/dexter/InstanceCodeEmitter;
+	public final fun beginStaticInitializer (I)Lio/github/charlietap/dexter/CodeEmitter;
+	public final fun beginStaticMethod-iX-AiWQ (Lio/github/charlietap/dexter/DexMethod;II)Lio/github/charlietap/dexter/CodeEmitter;
+	public static synthetic fun beginStaticMethod-iX-AiWQ$default (Lio/github/charlietap/dexter/ClassBuilder;Lio/github/charlietap/dexter/DexMethod;IIILjava/lang/Object;)Lio/github/charlietap/dexter/CodeEmitter;
+}
+
+public final class io/github/charlietap/dexter/ClassType : io/github/charlietap/dexter/ReferenceType {
+	public static final field Companion Lio/github/charlietap/dexter/ClassType$Companion;
+	public fun <init> (Ljava/lang/String;)V
+}
+
+public final class io/github/charlietap/dexter/ClassType$Companion {
+	public final fun fromName (Ljava/lang/String;)Lio/github/charlietap/dexter/ClassType;
+}
+
+public abstract class io/github/charlietap/dexter/CodeEmitter {
+	public final fun abort ()V
+	public final fun arrayGet-SM75J6s (IIII)V
+	public final fun arrayLength-o0ofCv0 (II)V
+	public final fun arrayPut-SM75J6s (IIII)V
+	public final fun binary-EwqJuWI (IIII)V
+	public final fun binary-N-xQ0b4 (IIII)V
+	public final fun bind-EGuywww (J)V
+	public final fun bindHandler-8qvMMfI (JI)V
+	public final fun bindHandler-h_opIRo (J)V
+	public final fun boundLabel-5EPRDSk ()J
+	public final fun branch-0RgsWek (IIIJ)V
+	public final fun branchZero-jyhvFno (IIJ)V
+	public final fun catchAllRange-0lTJiYE (JJJ)V
+	public final fun catchRange-6MrTOVY (JJLio/github/charlietap/dexter/ClassType;J)V
+	public final fun checkCast-WJj9sOc (ILio/github/charlietap/dexter/ReferenceType;)V
+	public final fun compare-h0wz6-w (IIII)V
+	public final fun const-WJj9sOc (II)V
+	public final fun constClass-WJj9sOc (ILio/github/charlietap/dexter/ReferenceType;)V
+	public final fun constMethodHandle-WJj9sOc (ILio/github/charlietap/dexter/DexMethodHandle;)V
+	public final fun constMethodType-WJj9sOc (ILio/github/charlietap/dexter/DexMethodType;)V
+	public final fun constString-WJj9sOc (ILjava/lang/String;)V
+	public final fun constWide-WJj9sOc (IJ)V
+	public final fun convert-xJw3bYk (III)V
+	public final fun fillArrayData-WJj9sOc (I[B)V
+	public final fun fillArrayData-WJj9sOc (I[C)V
+	public final fun fillArrayData-WJj9sOc (I[D)V
+	public final fun fillArrayData-WJj9sOc (I[F)V
+	public final fun fillArrayData-WJj9sOc (I[I)V
+	public final fun fillArrayData-WJj9sOc (I[J)V
+	public final fun fillArrayData-WJj9sOc (I[S)V
+	public final fun fillArrayData-WJj9sOc (I[Z)V
+	public final fun finish ()V
+	public final fun finish (I)V
+	public final fun getField-CicF-ms (IILio/github/charlietap/dexter/DexField;)V
+	public final fun getStatic-WJj9sOc (ILio/github/charlietap/dexter/DexField;)V
+	public final fun goto-EGuywww (J)V
+	public final fun handlerLabel-TDTxmE4 ()J
+	public final fun instanceOf-CicF-ms (IILio/github/charlietap/dexter/ReferenceType;)V
+	public final fun invokeConstructor-KwRxr6A (Lio/github/charlietap/dexter/DexConstructor;II)V
+	public final fun invokeConstructor-VXSZAPQ (Lio/github/charlietap/dexter/DexConstructor;III)V
+	public final fun invokeConstructor-Wkx04ds (Lio/github/charlietap/dexter/DexConstructor;IIIII)V
+	public final fun invokeConstructor-tFOYZkU (Lio/github/charlietap/dexter/DexConstructor;IIII)V
+	public final fun invokeConstructor-uxlvnAY (Lio/github/charlietap/dexter/DexConstructor;IIIIII)V
+	public final fun invokeConstructor-ysGHNIk (Lio/github/charlietap/dexter/DexConstructor;I)V
+	public final fun invokeConstructorRange-ysGHNIk (Lio/github/charlietap/dexter/DexConstructor;I)V
+	public final fun invokeDirect-KwRxr6A (Lio/github/charlietap/dexter/DexMethod;II)V
+	public final fun invokeDirect-VXSZAPQ (Lio/github/charlietap/dexter/DexMethod;III)V
+	public final fun invokeDirect-Wkx04ds (Lio/github/charlietap/dexter/DexMethod;IIIII)V
+	public final fun invokeDirect-tFOYZkU (Lio/github/charlietap/dexter/DexMethod;IIII)V
+	public final fun invokeDirect-uxlvnAY (Lio/github/charlietap/dexter/DexMethod;IIIIII)V
+	public final fun invokeDirect-ysGHNIk (Lio/github/charlietap/dexter/DexMethod;I)V
+	public final fun invokeDirectRange-ysGHNIk (Lio/github/charlietap/dexter/DexMethod;I)V
+	public final fun invokeInterface-KwRxr6A (Lio/github/charlietap/dexter/DexMethod;II)V
+	public final fun invokeInterface-VXSZAPQ (Lio/github/charlietap/dexter/DexMethod;III)V
+	public final fun invokeInterface-Wkx04ds (Lio/github/charlietap/dexter/DexMethod;IIIII)V
+	public final fun invokeInterface-tFOYZkU (Lio/github/charlietap/dexter/DexMethod;IIII)V
+	public final fun invokeInterface-uxlvnAY (Lio/github/charlietap/dexter/DexMethod;IIIIII)V
+	public final fun invokeInterface-ysGHNIk (Lio/github/charlietap/dexter/DexMethod;I)V
+	public final fun invokeInterfaceRange-ysGHNIk (Lio/github/charlietap/dexter/DexMethod;I)V
+	public final fun invokePolymorphic-4aVY9SA (Lio/github/charlietap/dexter/DexMethod;Lio/github/charlietap/dexter/DexMethodType;I)V
+	public final fun invokePolymorphic-PtNLeDk (Lio/github/charlietap/dexter/DexMethod;Lio/github/charlietap/dexter/DexMethodType;II)V
+	public final fun invokePolymorphic-Q26l6y0 (Lio/github/charlietap/dexter/DexMethod;Lio/github/charlietap/dexter/DexMethodType;IIIII)V
+	public final fun invokePolymorphic-Z32Ndk4 (Lio/github/charlietap/dexter/DexMethod;Lio/github/charlietap/dexter/DexMethodType;IIII)V
+	public final fun invokePolymorphic-d6Hr_Rk (Lio/github/charlietap/dexter/DexMethod;Lio/github/charlietap/dexter/DexMethodType;III)V
+	public final fun invokePolymorphicRange-4aVY9SA (Lio/github/charlietap/dexter/DexMethod;Lio/github/charlietap/dexter/DexMethodType;I)V
+	public final fun invokeStatic (Lio/github/charlietap/dexter/DexMethod;)V
+	public final fun invokeStatic-KwRxr6A (Lio/github/charlietap/dexter/DexMethod;II)V
+	public final fun invokeStatic-VXSZAPQ (Lio/github/charlietap/dexter/DexMethod;III)V
+	public final fun invokeStatic-Wkx04ds (Lio/github/charlietap/dexter/DexMethod;IIIII)V
+	public final fun invokeStatic-tFOYZkU (Lio/github/charlietap/dexter/DexMethod;IIII)V
+	public final fun invokeStatic-ysGHNIk (Lio/github/charlietap/dexter/DexMethod;I)V
+	public final fun invokeStaticRange-ysGHNIk (Lio/github/charlietap/dexter/DexMethod;I)V
+	public final fun invokeVirtual-KwRxr6A (Lio/github/charlietap/dexter/DexMethod;II)V
+	public final fun invokeVirtual-VXSZAPQ (Lio/github/charlietap/dexter/DexMethod;III)V
+	public final fun invokeVirtual-Wkx04ds (Lio/github/charlietap/dexter/DexMethod;IIIII)V
+	public final fun invokeVirtual-tFOYZkU (Lio/github/charlietap/dexter/DexMethod;IIII)V
+	public final fun invokeVirtual-uxlvnAY (Lio/github/charlietap/dexter/DexMethod;IIIIII)V
+	public final fun invokeVirtual-ysGHNIk (Lio/github/charlietap/dexter/DexMethod;I)V
+	public final fun invokeVirtualRange-ysGHNIk (Lio/github/charlietap/dexter/DexMethod;I)V
+	public final fun isBound-EGuywww (J)Z
+	public final fun label-5EPRDSk ()J
+	public final fun labelTable-U6Ytg2E (IIJ)Lio/github/charlietap/dexter/LabelTable;
+	public final fun labels (I)Lio/github/charlietap/dexter/Labels;
+	public final fun line (I)V
+	public final fun monitorEnter-vcotoOE (I)V
+	public final fun monitorExit-vcotoOE (I)V
+	public final fun move-o0ofCv0 (II)V
+	public final fun moveObject-o0ofCv0 (II)V
+	public final fun moveResult-vcotoOE (I)V
+	public final fun moveWide-o0ofCv0 (II)V
+	public final fun newArray-CicF-ms (IILio/github/charlietap/dexter/ArrayType;)V
+	public final fun newInstance-WJj9sOc (ILio/github/charlietap/dexter/ClassType;)V
+	public final fun packedSwitch-WJj9sOc (ILio/github/charlietap/dexter/LabelTable;)V
+	public final fun parameter-ZFwbx2Y (I)I
+	public final fun putField-CicF-ms (IILio/github/charlietap/dexter/DexField;)V
+	public final fun putStatic-WJj9sOc (ILio/github/charlietap/dexter/DexField;)V
+	public final fun returnValue-vcotoOE (I)V
+	public final fun returnVoid ()V
+	public final fun switch-WJj9sOc (ILio/github/charlietap/dexter/SwitchCases;)V
+	public final fun throwValue-vcotoOE (I)V
+	public final fun unary-DfSLyvQ (III)V
+}
+
+public final class io/github/charlietap/dexter/CompareOp {
+	public static final field Companion Lio/github/charlietap/dexter/CompareOp$Companion;
+	public static final synthetic fun box-impl (I)Lio/github/charlietap/dexter/CompareOp;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (ILjava/lang/Object;)Z
+	public static final fun equals-impl0 (II)Z
+	public fun hashCode ()I
+	public static fun hashCode-impl (I)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (I)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()I
+}
+
+public final class io/github/charlietap/dexter/CompareOp$Companion {
+	public final fun getCmpLong-db6XvGA ()I
+	public final fun getCmpgDouble-db6XvGA ()I
+	public final fun getCmpgFloat-db6XvGA ()I
+	public final fun getCmplDouble-db6XvGA ()I
+	public final fun getCmplFloat-db6XvGA ()I
+}
+
+public final class io/github/charlietap/dexter/Cond {
+	public static final field Companion Lio/github/charlietap/dexter/Cond$Companion;
+	public static final synthetic fun box-impl (I)Lio/github/charlietap/dexter/Cond;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (ILjava/lang/Object;)Z
+	public static final fun equals-impl0 (II)Z
+	public fun hashCode ()I
+	public static fun hashCode-impl (I)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (I)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()I
+}
+
+public final class io/github/charlietap/dexter/Cond$Companion {
+	public final fun getEq-D9XX4Rw ()I
+	public final fun getGe-D9XX4Rw ()I
+	public final fun getGt-D9XX4Rw ()I
+	public final fun getLe-D9XX4Rw ()I
+	public final fun getLt-D9XX4Rw ()I
+	public final fun getNe-D9XX4Rw ()I
+}
+
+public final class io/github/charlietap/dexter/ConstructorAccess {
+	public static final field Companion Lio/github/charlietap/dexter/ConstructorAccess$Companion;
+	public static final synthetic fun box-impl (I)Lio/github/charlietap/dexter/ConstructorAccess;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (ILjava/lang/Object;)Z
+	public static final fun equals-impl0 (II)Z
+	public fun hashCode ()I
+	public static fun hashCode-impl (I)I
+	public static final fun synthetic-h_9aaKo (I)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (I)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()I
+}
+
+public final class io/github/charlietap/dexter/ConstructorAccess$Companion {
+	public final fun getPackage-h_9aaKo ()I
+	public final fun getPrivate-h_9aaKo ()I
+	public final fun getProtected-h_9aaKo ()I
+	public final fun getPublic-h_9aaKo ()I
+}
+
+public final class io/github/charlietap/dexter/Conversion {
+	public static final field Companion Lio/github/charlietap/dexter/Conversion$Companion;
+	public static final synthetic fun box-impl (I)Lio/github/charlietap/dexter/Conversion;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (ILjava/lang/Object;)Z
+	public static final fun equals-impl0 (II)Z
+	public fun hashCode ()I
+	public static fun hashCode-impl (I)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (I)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()I
+}
+
+public final class io/github/charlietap/dexter/Conversion$Companion {
+	public final fun getDoubleToFloat-wwrophs ()I
+	public final fun getDoubleToInt-wwrophs ()I
+	public final fun getDoubleToLong-wwrophs ()I
+	public final fun getFloatToDouble-wwrophs ()I
+	public final fun getFloatToInt-wwrophs ()I
+	public final fun getFloatToLong-wwrophs ()I
+	public final fun getIntToByte-wwrophs ()I
+	public final fun getIntToChar-wwrophs ()I
+	public final fun getIntToDouble-wwrophs ()I
+	public final fun getIntToFloat-wwrophs ()I
+	public final fun getIntToLong-wwrophs ()I
+	public final fun getIntToShort-wwrophs ()I
+	public final fun getLongToDouble-wwrophs ()I
+	public final fun getLongToFloat-wwrophs ()I
+	public final fun getLongToInt-wwrophs ()I
+}
+
+public final class io/github/charlietap/dexter/DexConstructor {
+	public fun <init> (Lio/github/charlietap/dexter/ClassType;Ljava/util/List;)V
+	public fun <init> (Lio/github/charlietap/dexter/ClassType;[Lio/github/charlietap/dexter/ValueType;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getOwner ()Lio/github/charlietap/dexter/ClassType;
+	public final fun getParameters ()Ljava/util/List;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/charlietap/dexter/DexField {
+	public fun <init> (Lio/github/charlietap/dexter/ClassType;Ljava/lang/String;Lio/github/charlietap/dexter/ValueType;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public final fun getOwner ()Lio/github/charlietap/dexter/ClassType;
+	public final fun getType ()Lio/github/charlietap/dexter/ValueType;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/charlietap/dexter/DexFile {
+	public final fun abort ()V
+	public final fun addClass-8dGIqfM (Lio/github/charlietap/dexter/ClassType;Lio/github/charlietap/dexter/ClassType;[Lio/github/charlietap/dexter/ClassType;ILjava/lang/String;)Lio/github/charlietap/dexter/ClassBuilder;
+	public static synthetic fun addClass-8dGIqfM$default (Lio/github/charlietap/dexter/DexFile;Lio/github/charlietap/dexter/ClassType;Lio/github/charlietap/dexter/ClassType;[Lio/github/charlietap/dexter/ClassType;ILjava/lang/String;ILjava/lang/Object;)Lio/github/charlietap/dexter/ClassBuilder;
+	public final fun addInterface (Lio/github/charlietap/dexter/ClassType;[Lio/github/charlietap/dexter/ClassType;Ljava/lang/String;)Lio/github/charlietap/dexter/InterfaceBuilder;
+	public static synthetic fun addInterface$default (Lio/github/charlietap/dexter/DexFile;Lio/github/charlietap/dexter/ClassType;[Lio/github/charlietap/dexter/ClassType;Ljava/lang/String;ILjava/lang/Object;)Lio/github/charlietap/dexter/InterfaceBuilder;
+	public final fun finish ()[B
+}
+
+public final class io/github/charlietap/dexter/DexMethod {
+	public fun <init> (Lio/github/charlietap/dexter/ReferenceType;Ljava/lang/String;Lio/github/charlietap/dexter/DexType;Ljava/util/List;)V
+	public fun <init> (Lio/github/charlietap/dexter/ReferenceType;Ljava/lang/String;Lio/github/charlietap/dexter/DexType;[Lio/github/charlietap/dexter/ValueType;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getName ()Ljava/lang/String;
+	public final fun getOwner ()Lio/github/charlietap/dexter/ReferenceType;
+	public final fun getParameters ()Ljava/util/List;
+	public final fun getReturnType ()Lio/github/charlietap/dexter/DexType;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/charlietap/dexter/DexMethodHandle {
+	public static final field Companion Lio/github/charlietap/dexter/DexMethodHandle$Companion;
+	public fun equals (Ljava/lang/Object;)Z
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/charlietap/dexter/DexMethodHandle$Companion {
+	public final fun instanceGet (Lio/github/charlietap/dexter/DexField;)Lio/github/charlietap/dexter/DexMethodHandle;
+	public final fun instancePut (Lio/github/charlietap/dexter/DexField;)Lio/github/charlietap/dexter/DexMethodHandle;
+	public final fun invokeConstructor (Lio/github/charlietap/dexter/DexConstructor;)Lio/github/charlietap/dexter/DexMethodHandle;
+	public final fun invokeDirect (Lio/github/charlietap/dexter/DexMethod;)Lio/github/charlietap/dexter/DexMethodHandle;
+	public final fun invokeInstance (Lio/github/charlietap/dexter/DexMethod;)Lio/github/charlietap/dexter/DexMethodHandle;
+	public final fun invokeInterface (Lio/github/charlietap/dexter/DexMethod;)Lio/github/charlietap/dexter/DexMethodHandle;
+	public final fun invokeStatic (Lio/github/charlietap/dexter/DexMethod;)Lio/github/charlietap/dexter/DexMethodHandle;
+	public final fun staticGet (Lio/github/charlietap/dexter/DexField;)Lio/github/charlietap/dexter/DexMethodHandle;
+	public final fun staticPut (Lio/github/charlietap/dexter/DexField;)Lio/github/charlietap/dexter/DexMethodHandle;
+}
+
+public final class io/github/charlietap/dexter/DexMethodType {
+	public fun <init> (Lio/github/charlietap/dexter/DexType;Ljava/util/List;)V
+	public fun <init> (Lio/github/charlietap/dexter/DexType;[Lio/github/charlietap/dexter/ValueType;)V
+	public fun equals (Ljava/lang/Object;)Z
+	public final fun getParameters ()Ljava/util/List;
+	public final fun getReturnType ()Lio/github/charlietap/dexter/DexType;
+	public fun hashCode ()I
+	public fun toString ()Ljava/lang/String;
+}
+
+public abstract class io/github/charlietap/dexter/DexType {
+	public static final field Companion Lio/github/charlietap/dexter/DexType$Companion;
+	public synthetic fun <init> (Ljava/lang/String;IICLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun equals (Ljava/lang/Object;)Z
+	public final fun getDescriptor ()Ljava/lang/String;
+	public final fun hashCode ()I
+	public final fun toString ()Ljava/lang/String;
+}
+
+public final class io/github/charlietap/dexter/DexType$Companion {
+	public final fun getBoolean ()Lio/github/charlietap/dexter/PrimitiveType;
+	public final fun getByte ()Lio/github/charlietap/dexter/PrimitiveType;
+	public final fun getChar ()Lio/github/charlietap/dexter/PrimitiveType;
+	public final fun getDouble ()Lio/github/charlietap/dexter/PrimitiveType;
+	public final fun getFloat ()Lio/github/charlietap/dexter/PrimitiveType;
+	public final fun getInt ()Lio/github/charlietap/dexter/PrimitiveType;
+	public final fun getLong ()Lio/github/charlietap/dexter/PrimitiveType;
+	public final fun getObject ()Lio/github/charlietap/dexter/ClassType;
+	public final fun getShort ()Lio/github/charlietap/dexter/PrimitiveType;
+	public final fun getString ()Lio/github/charlietap/dexter/ClassType;
+	public final fun getVoid ()Lio/github/charlietap/dexter/VoidType;
+}
+
+public final class io/github/charlietap/dexter/Dexter {
+	public fun <init> ()V
+	public fun <init> (Lkotlin/jvm/functions/Function1;)V
+	public final fun beginFile ()Lio/github/charlietap/dexter/DexFile;
+}
+
+public abstract interface annotation class io/github/charlietap/dexter/DexterDsl : java/lang/annotation/Annotation {
+}
+
+public abstract class io/github/charlietap/dexter/DexterException : java/lang/RuntimeException {
+	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class io/github/charlietap/dexter/DexterFileFullException : io/github/charlietap/dexter/DexterException {
+}
+
+public final class io/github/charlietap/dexter/DexterMethodTooLargeException : io/github/charlietap/dexter/DexterException {
+}
+
+public final class io/github/charlietap/dexter/DexterOptions {
+	public final fun getMaxMethodCodeUnits ()I
+	public final fun setMaxMethodCodeUnits (I)V
+}
+
+public final class io/github/charlietap/dexter/HandlerLabel {
+	public static final synthetic fun box-impl (J)Lio/github/charlietap/dexter/HandlerLabel;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (JLjava/lang/Object;)Z
+	public static final fun equals-impl0 (JJ)Z
+	public fun hashCode ()I
+	public static fun hashCode-impl (J)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (J)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()J
+}
+
+public final class io/github/charlietap/dexter/InstanceCodeEmitter : io/github/charlietap/dexter/CodeEmitter {
+	public final fun getSelf-P4EWRKI ()I
+}
+
+public final class io/github/charlietap/dexter/InterfaceBuilder {
+	public final fun addAbstractMethod (Lio/github/charlietap/dexter/DexMethod;)V
+}
+
+public final class io/github/charlietap/dexter/Label {
+	public static final synthetic fun box-impl (J)Lio/github/charlietap/dexter/Label;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (JLjava/lang/Object;)Z
+	public static final fun equals-impl0 (JJ)Z
+	public fun hashCode ()I
+	public static fun hashCode-impl (J)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (J)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()J
+}
+
+public final class io/github/charlietap/dexter/LabelTable {
+	public final fun get-lqe4Pfw (I)J
+	public final fun getFirstKey ()I
+	public final fun getSize ()I
+	public final fun set-zLva08w (IJ)V
+}
+
+public final class io/github/charlietap/dexter/Labels {
+	public final fun get-lqe4Pfw (I)J
+	public final fun getSize ()I
+}
+
+public final class io/github/charlietap/dexter/LiteralOp {
+	public static final field Companion Lio/github/charlietap/dexter/LiteralOp$Companion;
+	public static final synthetic fun box-impl (I)Lio/github/charlietap/dexter/LiteralOp;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (ILjava/lang/Object;)Z
+	public static final fun equals-impl0 (II)Z
+	public fun hashCode ()I
+	public static fun hashCode-impl (I)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (I)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()I
+}
+
+public final class io/github/charlietap/dexter/LiteralOp$Companion {
+	public final fun getAddInt-wswA-mw ()I
+	public final fun getAndInt-wswA-mw ()I
+	public final fun getDivInt-wswA-mw ()I
+	public final fun getMulInt-wswA-mw ()I
+	public final fun getOrInt-wswA-mw ()I
+	public final fun getRemInt-wswA-mw ()I
+	public final fun getShlInt-wswA-mw ()I
+	public final fun getShrInt-wswA-mw ()I
+	public final fun getSubInt-wswA-mw ()I
+	public final fun getUshrInt-wswA-mw ()I
+	public final fun getXorInt-wswA-mw ()I
+}
+
+public final class io/github/charlietap/dexter/MemberAccess {
+	public static final field Companion Lio/github/charlietap/dexter/MemberAccess$Companion;
+	public static final synthetic fun box-impl (I)Lio/github/charlietap/dexter/MemberAccess;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (ILjava/lang/Object;)Z
+	public static final fun equals-impl0 (II)Z
+	public static final fun final--WQa5eI (I)I
+	public fun hashCode ()I
+	public static fun hashCode-impl (I)I
+	public static final fun synthetic--WQa5eI (I)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (I)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()I
+}
+
+public final class io/github/charlietap/dexter/MemberAccess$Companion {
+	public final fun getPackage--WQa5eI ()I
+	public final fun getPrivate--WQa5eI ()I
+	public final fun getProtected--WQa5eI ()I
+	public final fun getPublic--WQa5eI ()I
+}
+
+public final class io/github/charlietap/dexter/PrimitiveType : io/github/charlietap/dexter/ValueType {
+}
+
+public abstract class io/github/charlietap/dexter/ReferenceType : io/github/charlietap/dexter/ValueType {
+	public synthetic fun <init> (Ljava/lang/String;Lkotlin/jvm/internal/DefaultConstructorMarker;)V
+}
+
+public final class io/github/charlietap/dexter/Reg {
+	public static final synthetic fun box-impl (I)Lio/github/charlietap/dexter/Reg;
+	public static fun constructor-impl (I)I
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (ILjava/lang/Object;)Z
+	public static final fun equals-impl0 (II)Z
+	public final fun getIndex ()I
+	public fun hashCode ()I
+	public static fun hashCode-impl (I)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (I)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()I
+}
+
+public final class io/github/charlietap/dexter/SwitchCases {
+	public fun <init> ()V
+	public final fun case-zLva08w (IJ)V
+	public final fun clear ()V
+	public final fun getSize ()I
+}
+
+public final class io/github/charlietap/dexter/UnaryOp {
+	public static final field Companion Lio/github/charlietap/dexter/UnaryOp$Companion;
+	public static final synthetic fun box-impl (I)Lio/github/charlietap/dexter/UnaryOp;
+	public fun equals (Ljava/lang/Object;)Z
+	public static fun equals-impl (ILjava/lang/Object;)Z
+	public static final fun equals-impl0 (II)Z
+	public fun hashCode ()I
+	public static fun hashCode-impl (I)I
+	public fun toString ()Ljava/lang/String;
+	public static fun toString-impl (I)Ljava/lang/String;
+	public final synthetic fun unbox-impl ()I
+}
+
+public final class io/github/charlietap/dexter/UnaryOp$Companion {
+	public final fun getNegDouble-gM-UyoQ ()I
+	public final fun getNegFloat-gM-UyoQ ()I
+	public final fun getNegInt-gM-UyoQ ()I
+	public final fun getNegLong-gM-UyoQ ()I
+	public final fun getNotInt-gM-UyoQ ()I
+	public final fun getNotLong-gM-UyoQ ()I
+}
+
+public abstract class io/github/charlietap/dexter/ValueType : io/github/charlietap/dexter/DexType {
+	public synthetic fun <init> (Ljava/lang/String;IICLkotlin/jvm/internal/DefaultConstructorMarker;)V
+	public final fun array ()Lio/github/charlietap/dexter/ArrayType;
+}
+
+public final class io/github/charlietap/dexter/VoidType : io/github/charlietap/dexter/DexType {
+}
+
