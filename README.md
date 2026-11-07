@@ -10,7 +10,7 @@ Dexter is a small Kotlin Multiplatform library for writing [Android DEX](https:/
 
 ```kotlin
 dependencies {
-    implementation("io.github.charlietap.dexter:dexter:0.1.0")
+    implementation("io.github.charlietap.dexter:dexter:0.1.1")
 }
 ```
 
