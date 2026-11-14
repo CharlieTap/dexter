@@ -1,6 +1,6 @@
 [versions]
 
-version-name = "0.2.0-SNAPSHOT"
+version-name = "0.2.0"
 
 compile-sdk = "37"
 min-sdk = "1"
