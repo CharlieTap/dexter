@@ -9,17 +9,25 @@ Large methods are costly for ART to verify and compile, so Dexter can cap their 
 val dexter = Dexter { maxMethodCodeUnits = 10_000 }
 ```
 
-`finish(maxCodeUnits)` sets a lower cap for a single method. Both count switch and array
-payloads and branches widened to their long form. A method over its cap is rolled back and
-`finish` throws `DexterMethodTooLargeException`:
+`maxCodeUnits` on a `begin` call sets a lower cap for a single method. Both count switch and
+array payloads and branches widened to their long form. A method over its cap is rolled back
+and `DexterMethodTooLargeException` is thrown as soon as Dexter knows it cannot fit: by the
+instruction that takes it past the cap, or by `finish` once payloads and widened branches are
+counted. Code that may run long can give up early instead of emitting the rest of the method.
+A method that would overflow the file's code first fails with `DexterFileFullException` instead
+(see below):
 
 ```kotlin
-val code = classBuilder.beginStaticMethod(DexMethod(owner, "big", DexType.Void), registerCount = 1)
-repeat(1_000) { code.const(Reg(0), 100_000) }
-code.returnVoid()
+val code = classBuilder.beginStaticMethod(
+    DexMethod(owner, "big", DexType.Void),
+    registerCount = 1,
+    maxCodeUnits = 2_000,
+)
 
 try {
-    code.finish(maxCodeUnits = 2_000)
+    repeat(1_000) { code.const(Reg(0), 100_000) }
+    code.returnVoid()
+    code.finish()
 } catch (tooLarge: DexterMethodTooLargeException) {
     // The method has been rolled back; emit a smaller version or split it up.
 }

@@ -99,13 +99,14 @@ public final class io/github/charlietap/dexter/ClassAccess$Companion {
 public final class io/github/charlietap/dexter/ClassBuilder {
 	public final fun addStaticField-oISzTZo (Lio/github/charlietap/dexter/DexField;I)V
 	public static synthetic fun addStaticField-oISzTZo$default (Lio/github/charlietap/dexter/ClassBuilder;Lio/github/charlietap/dexter/DexField;IILjava/lang/Object;)V
-	public final fun beginConstructor-oNB9DZ8 (Lio/github/charlietap/dexter/DexConstructor;II)Lio/github/charlietap/dexter/InstanceCodeEmitter;
-	public static synthetic fun beginConstructor-oNB9DZ8$default (Lio/github/charlietap/dexter/ClassBuilder;Lio/github/charlietap/dexter/DexConstructor;IIILjava/lang/Object;)Lio/github/charlietap/dexter/InstanceCodeEmitter;
-	public final fun beginInstanceMethod-iX-AiWQ (Lio/github/charlietap/dexter/DexMethod;II)Lio/github/charlietap/dexter/InstanceCodeEmitter;
-	public static synthetic fun beginInstanceMethod-iX-AiWQ$default (Lio/github/charlietap/dexter/ClassBuilder;Lio/github/charlietap/dexter/DexMethod;IIILjava/lang/Object;)Lio/github/charlietap/dexter/InstanceCodeEmitter;
-	public final fun beginStaticInitializer (I)Lio/github/charlietap/dexter/CodeEmitter;
-	public final fun beginStaticMethod-iX-AiWQ (Lio/github/charlietap/dexter/DexMethod;II)Lio/github/charlietap/dexter/CodeEmitter;
-	public static synthetic fun beginStaticMethod-iX-AiWQ$default (Lio/github/charlietap/dexter/ClassBuilder;Lio/github/charlietap/dexter/DexMethod;IIILjava/lang/Object;)Lio/github/charlietap/dexter/CodeEmitter;
+	public final fun beginConstructor-3w-50OQ (Lio/github/charlietap/dexter/DexConstructor;III)Lio/github/charlietap/dexter/InstanceCodeEmitter;
+	public static synthetic fun beginConstructor-3w-50OQ$default (Lio/github/charlietap/dexter/ClassBuilder;Lio/github/charlietap/dexter/DexConstructor;IIIILjava/lang/Object;)Lio/github/charlietap/dexter/InstanceCodeEmitter;
+	public final fun beginInstanceMethod-Ofe_tiY (Lio/github/charlietap/dexter/DexMethod;III)Lio/github/charlietap/dexter/InstanceCodeEmitter;
+	public static synthetic fun beginInstanceMethod-Ofe_tiY$default (Lio/github/charlietap/dexter/ClassBuilder;Lio/github/charlietap/dexter/DexMethod;IIIILjava/lang/Object;)Lio/github/charlietap/dexter/InstanceCodeEmitter;
+	public final fun beginStaticInitializer (II)Lio/github/charlietap/dexter/CodeEmitter;
+	public static synthetic fun beginStaticInitializer$default (Lio/github/charlietap/dexter/ClassBuilder;IIILjava/lang/Object;)Lio/github/charlietap/dexter/CodeEmitter;
+	public final fun beginStaticMethod-Ofe_tiY (Lio/github/charlietap/dexter/DexMethod;III)Lio/github/charlietap/dexter/CodeEmitter;
+	public static synthetic fun beginStaticMethod-Ofe_tiY$default (Lio/github/charlietap/dexter/ClassBuilder;Lio/github/charlietap/dexter/DexMethod;IIIILjava/lang/Object;)Lio/github/charlietap/dexter/CodeEmitter;
 }
 
 public final class io/github/charlietap/dexter/ClassType : io/github/charlietap/dexter/ReferenceType {
@@ -150,7 +151,6 @@ public abstract class io/github/charlietap/dexter/CodeEmitter {
 	public final fun fillArrayData-WJj9sOc (I[S)V
 	public final fun fillArrayData-WJj9sOc (I[Z)V
 	public final fun finish ()V
-	public final fun finish (I)V
 	public final fun getField-CicF-ms (IILio/github/charlietap/dexter/DexField;)V
 	public final fun getStatic-WJj9sOc (ILio/github/charlietap/dexter/DexField;)V
 	public final fun goto-EGuywww (J)V

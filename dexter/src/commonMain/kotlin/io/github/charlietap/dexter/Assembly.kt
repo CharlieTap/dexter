@@ -117,44 +117,60 @@ public class ClassBuilder internal constructor(
         }
     }
 
-    /** Starts the body of static [method]. It joins the class only when [CodeEmitter.finish] succeeds. */
+    /**
+     * Starts the body of static [method]. It joins the class only when [CodeEmitter.finish] succeeds.
+     * [maxCodeUnits] caps this method's size below the [DexterOptions.maxMethodCodeUnits] cap; see [CodeEmitter].
+     */
     public fun beginStaticMethod(
         method: DexMethod,
         registerCount: Int,
         access: MemberAccess = MemberAccess.Public,
+        maxCodeUnits: Int = Int.MAX_VALUE,
     ): CodeEmitter {
         checkOwner(method)
-        return begin(method, access.flags or AccessFlags.STATIC, registerCount, isStatic = true)
+        return begin(method, access.flags or AccessFlags.STATIC, registerCount, isStatic = true, maxCodeUnits)
     }
 
-    /** Starts the body of instance [method]. It joins the class only when [CodeEmitter.finish] succeeds. */
+    /**
+     * Starts the body of instance [method]. It joins the class only when [CodeEmitter.finish] succeeds.
+     * [maxCodeUnits] caps this method's size below the [DexterOptions.maxMethodCodeUnits] cap; see [CodeEmitter].
+     */
     public fun beginInstanceMethod(
         method: DexMethod,
         registerCount: Int,
         access: MemberAccess = MemberAccess.Public,
+        maxCodeUnits: Int = Int.MAX_VALUE,
     ): InstanceCodeEmitter {
         checkOwner(method)
-        return begin(method, access.flags, registerCount, isStatic = false)
+        return begin(method, access.flags, registerCount, isStatic = false, maxCodeUnits)
     }
 
-    /** Starts the body of [constructor]. It joins the class only when [CodeEmitter.finish] succeeds. */
+    /**
+     * Starts the body of [constructor]. It joins the class only when [CodeEmitter.finish] succeeds.
+     * [maxCodeUnits] caps its size below the [DexterOptions.maxMethodCodeUnits] cap; see [CodeEmitter].
+     */
     public fun beginConstructor(
         constructor: DexConstructor,
         registerCount: Int,
         access: ConstructorAccess = ConstructorAccess.Public,
+        maxCodeUnits: Int = Int.MAX_VALUE,
     ): InstanceCodeEmitter {
         checkUsable()
         require(constructor.owner == type) { "Constructor $constructor does not belong to $type" }
-        return begin(constructor.method, access.flags or AccessFlags.CONSTRUCTOR, registerCount, isStatic = false)
+        return begin(constructor.method, access.flags or AccessFlags.CONSTRUCTOR, registerCount, isStatic = false, maxCodeUnits)
     }
 
-    /** Starts the class's static initializer. It joins the class only when [CodeEmitter.finish] succeeds. */
+    /**
+     * Starts the class's static initializer. It joins the class only when [CodeEmitter.finish] succeeds.
+     * [maxCodeUnits] caps its size below the [DexterOptions.maxMethodCodeUnits] cap; see [CodeEmitter].
+     */
     public fun beginStaticInitializer(
         registerCount: Int,
+        maxCodeUnits: Int = Int.MAX_VALUE,
     ): CodeEmitter {
         checkUsable()
         val method = DexMethod.staticInitializer(type)
-        return begin(method, AccessFlags.STATIC or AccessFlags.CONSTRUCTOR, registerCount, isStatic = true)
+        return begin(method, AccessFlags.STATIC or AccessFlags.CONSTRUCTOR, registerCount, isStatic = true, maxCodeUnits)
     }
 
     private fun checkOwner(
@@ -169,14 +185,16 @@ public class ClassBuilder internal constructor(
         flags: Int,
         registerCount: Int,
         isStatic: Boolean,
+        maxCodeUnits: Int,
     ): InstanceCodeEmitter {
         val ins = method.words + if (isStatic) 0 else 1
         require(ins <= 255) { "$method takes $ins argument words, more than 255" }
         require(registerCount in ins..65535) { "registerCount must be in $ins..65535: $registerCount" }
+        require(maxCodeUnits > 0) { "maxCodeUnits must be positive: $maxCodeUnits" }
         val direct = flags and (AccessFlags.STATIC or AccessFlags.PRIVATE or AccessFlags.CONSTRUCTOR) != 0
         val list = if (direct) ClassTable.LIST_DIRECT_METHODS else ClassTable.LIST_VIRTUAL_METHODS
         val code = dexter.code
-        code.begin(method, registerCount, ins, isStatic, index, list, flags)
+        code.begin(method, registerCount, ins, isStatic, index, list, flags, maxCodeUnits)
         return code
     }
 

@@ -19,6 +19,11 @@ import io.github.charlietap.dexter.internal.putU64
  * `begin` call returns this same object, so a reference kept from an earlier method writes into
  * whichever method is open now. After a [DexterException] the method has been aborted; any other
  * exception leaves it unchanged.
+ *
+ * A method may use at most the smaller of its `begin` call's `maxCodeUnits` and
+ * [DexterOptions.maxMethodCodeUnits]. As soon as Dexter knows it cannot fit, it aborts the method and
+ * throws [DexterMethodTooLargeException]: from the instruction that takes it past the limit, or from
+ * [finish] once switch and array payloads and branches widened to their long form are counted.
  */
 @DexterDsl
 public abstract class CodeEmitter internal constructor(
@@ -37,8 +42,13 @@ public abstract class CodeEmitter internal constructor(
         private set
     private var pos = 0
 
-    // Zero while no method is open, so the capacity check also rejects use outside a body.
+    // Zero while no method is open, so the capacity check also rejects use outside a body. While one is
+    // open it is the smaller of the arena's end and codeLimit, so one comparison guards both.
     private var limit = 0
+
+    // Where the open method's code would pass maxCodeUnits. Code only grows, so passing it means finish would fail.
+    private var codeLimit = 0
+    private var maxCodeUnits = 0
 
     internal var isOpen = false
         private set
@@ -85,6 +95,7 @@ public abstract class CodeEmitter internal constructor(
         memberClass: Int,
         memberList: Int,
         memberFlags: Int,
+        maxCodeUnits: Int,
     ) {
         pools.save(poolMark)
         val index = try {
@@ -118,28 +129,22 @@ public abstract class CodeEmitter internal constructor(
         catches.reset()
         lastInvokeEnd = -1
         terminatorEnd = -1
-        limit = arena.size
+        this.maxCodeUnits = minOf(maxCodeUnits, config.maxMethodCodeUnits)
+        codeLimit = (methodStart + this.maxCodeUnits.toLong() * 2).coerceAtMost(Int.MAX_VALUE.toLong()).toInt()
+        limit = minOf(arena.size, codeLimit)
         isOpen = true
     }
 
     /**
      * Throws [IllegalStateException], leaving the method open, if a label, catch range or
-     * handler is invalid, or [DexterMethodTooLargeException], aborting it, if it is too large.
+     * handler is invalid, or [DexterMethodTooLargeException], aborting it, if it needs more code
+     * units than its limit, counting switch and array payloads and branches widened to their long form.
      */
-    public fun finish(): Unit = finish(config.maxMethodCodeUnits)
-
-    /**
-     * As [finish], but also aborts with [DexterMethodTooLargeException] if the method needs more than [maxCodeUnits]
-     * code units, counting payloads and relaxed branches. It cannot raise the limit set in [DexterOptions].
-     */
-    public fun finish(
-        maxCodeUnits: Int,
-    ) {
+    public fun finish() {
         checkOpen()
-        require(maxCodeUnits > 0) { "maxCodeUnits must be positive: $maxCodeUnits" }
         validate()
         val record = try {
-            commit(minOf(maxCodeUnits, config.maxMethodCodeUnits))
+            commit()
         } catch (failure: DexterException) {
             abort()
             throw failure
@@ -1410,15 +1415,13 @@ public abstract class CodeEmitter internal constructor(
         catches.validate(labels, units, method, branches, switches)
     }
 
-    private fun commit(
-        maxCodeUnits: Int,
-    ): Int {
+    private fun commit(): Int {
         if (!branches.allFit(labels)) relax()
         branches.patch(arena, methodStart, labels)
         val codeEnd = unit()
         val switchUnits = switches.payloadUnits(codeEnd)
         val payloadEnd = pos + (switchUnits + arrayData.payloadUnits(codeEnd + switchUnits)) * 2
-        if (payloadEnd > limit) growArena(payloadEnd)
+        if (payloadEnd > arena.size) growArena(payloadEnd)
         pos = payloadEnd
         switches.writePayloads(arena, methodStart, codeEnd, labels)
         arrayData.writePayloads(arena, methodStart, codeEnd + switchUnits)
@@ -1441,7 +1444,7 @@ public abstract class CodeEmitter internal constructor(
         if (methodStart + length > arena.size) growArena(methodStart + length)
         body.copyInto(arena, methodStart, 0, length)
         pos = methodStart + length
-        limit = arena.size
+        limit = minOf(arena.size, codeLimit)
         labels.remap(branches)
         tables.remapRefs(tableMark[0], methodStart, branches)
         tables.remapPositions(tableMark[4], branches)
@@ -1460,6 +1463,11 @@ public abstract class CodeEmitter internal constructor(
         val end = at + units * 2
         if (end > limit) {
             checkOpen()
+            if (end > codeLimit) {
+                val tooLarge = DexterMethodTooLargeException("$method needs more than $maxCodeUnits code units")
+                abort()
+                throw tooLarge
+            }
             growArena(end)
         }
         pos = end
@@ -1474,7 +1482,7 @@ public abstract class CodeEmitter internal constructor(
             throw DexterFileFullException("Code exceeds ${MAX_ARENA ushr 20} MiB")
         }
         arena = arena.copyOf(minOf(maxOf(arena.size * 2, end), MAX_ARENA))
-        limit = arena.size
+        limit = minOf(arena.size, codeLimit)
     }
 
     private fun write(

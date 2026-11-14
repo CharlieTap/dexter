@@ -69,32 +69,37 @@ class BuilderTest {
     }
 
     @Test
-    fun `a method too large for end is aborted`() {
-        val file = Dexter { maxMethodCodeUnits = 1 }.beginFile()
-        val code = file.addClass(T, DexType.Object).beginStaticMethod(M, 0)
-        code.returnVoid()
-        code.returnVoid()
-        ignoringFailure { code.finish() }
+    fun `a method over its own limit is aborted by the instruction that passes it`() {
+        val file = Dexter().beginFile()
+        val builder = file.addClass(T, DexType.Object)
+        val code = builder.beginStaticMethod(M, 0, maxCodeUnits = 2)
+        repeat(2) { code.returnVoid() }
 
+        assertFailsWith<DexterMethodTooLargeException> { code.returnVoid() }
+        assertFailsWith<IllegalStateException> { code.returnVoid() }
         assertContentEquals(empty, file.finish())
     }
 
     @Test
-    fun `a method over its own limit is aborted`() {
-        val file = Dexter().beginFile()
-        val code = file.addClass(T, DexType.Object).beginStaticMethod(M, 0)
-        repeat(3) { code.returnVoid() }
-        ignoringFailure { code.finish(maxCodeUnits = 2) }
+    fun `a class can take another method after one is aborted for size`() {
+        val bytes = Dexter().assemble {
+            val builder = addClass(T, DexType.Object)
+            val big = builder.beginStaticMethod(M, 0, maxCodeUnits = 1)
+            ignoringFailure { repeat(2) { big.returnVoid() } }
+            val small = builder.beginStaticMethod(N, 0)
+            small.returnVoid()
+            small.finish()
+        }
 
-        assertContentEquals(empty, file.finish())
+        assertEquals(1, DexReader(bytes).method(N.toString()).insns.size)
     }
 
     @Test
     fun `a method at its own limit is kept`() {
         val bytes = Dexter().assemble {
-            val code = addClass(T, DexType.Object).beginStaticMethod(M, 0)
+            val code = addClass(T, DexType.Object).beginStaticMethod(M, 0, maxCodeUnits = 2)
             repeat(2) { code.returnVoid() }
-            code.finish(maxCodeUnits = 2)
+            code.finish()
         }
 
         assertEquals(2, DexReader(bytes).method(M.toString()).insns.size)
@@ -102,37 +107,82 @@ class BuilderTest {
 
     @Test
     fun `a method's own limit counts its payloads`() {
-        assertFailsWith<DexterMethodTooLargeException> {
-            Dexter().assemble {
-                val code = addClass(T, DexType.Object).beginStaticMethod(M, 1)
-                val target = code.boundLabel()
-                code.packedSwitch(v(0), code.labelTable(0, 1, target))
-                code.returnVoid()
-                code.finish(maxCodeUnits = 9)
-            }
+        val file = Dexter().beginFile()
+        val code = file.addClass(T, DexType.Object).beginStaticMethod(M, 1, maxCodeUnits = 9)
+        val target = code.boundLabel()
+        code.packedSwitch(v(0), code.labelTable(0, 1, target))
+        code.returnVoid()
+
+        assertFailsWith<DexterMethodTooLargeException> { code.finish() }
+        assertContentEquals(empty, file.finish())
+    }
+
+    @Test
+    fun `a method's own limit counts from its own start`() {
+        val file = Dexter().beginFile()
+        val builder = file.addClass(T, DexType.Object)
+        val first = builder.beginStaticMethod(N, 0)
+        repeat(5) { first.returnVoid() }
+        first.finish()
+        val code = builder.beginStaticMethod(M, 0, maxCodeUnits = 2)
+        repeat(2) { code.returnVoid() }
+
+        assertFailsWith<DexterMethodTooLargeException> { code.returnVoid() }
+    }
+
+    @Test
+    fun `a method's own limit holds after the code arena grows`() {
+        val file = Dexter().beginFile()
+        val code = file.addClass(T, DexType.Object).beginStaticMethod(M, 0, maxCodeUnits = 40_000)
+        repeat(40_000) { code.returnVoid() }
+
+        assertFailsWith<DexterMethodTooLargeException> { code.returnVoid() }
+        assertContentEquals(empty, file.finish())
+    }
+
+    @Test
+    fun `every kind of method body takes its own limit`() {
+        val builder = Dexter().beginFile().addClass(T, DexType.Object)
+        val bodies = listOf(
+            { builder.beginInstanceMethod(DexMethod(T, "i", DexType.Void), 1, maxCodeUnits = 1) },
+            { builder.beginConstructor(DexConstructor(T), 1, maxCodeUnits = 1) },
+            { builder.beginStaticInitializer(0, maxCodeUnits = 1) },
+        )
+
+        for (begin in bodies) {
+            val code = begin()
+            code.returnVoid()
+            assertFailsWith<DexterMethodTooLargeException> { code.returnVoid() }
         }
+    }
+
+    @Test
+    fun `the global limit stops a method from the instruction that passes it`() {
+        val file = Dexter { maxMethodCodeUnits = 1 }.beginFile()
+        val code = file.addClass(T, DexType.Object).beginStaticMethod(M, 0)
+        code.returnVoid()
+
+        assertFailsWith<DexterMethodTooLargeException> { code.returnVoid() }
+        assertContentEquals(empty, file.finish())
     }
 
     @Test
     fun `a method's own limit cannot raise the global one`() {
-        assertFailsWith<DexterMethodTooLargeException> {
-            Dexter { maxMethodCodeUnits = 1 }.assemble {
-                val code = addClass(T, DexType.Object).beginStaticMethod(M, 0)
-                repeat(2) { code.returnVoid() }
-                code.finish(maxCodeUnits = 100)
-            }
-        }
+        val file = Dexter { maxMethodCodeUnits = 1 }.beginFile()
+        val code = file.addClass(T, DexType.Object).beginStaticMethod(M, 0, maxCodeUnits = 100)
+        code.returnVoid()
+
+        assertFailsWith<DexterMethodTooLargeException> { code.returnVoid() }
     }
 
     @Test
     fun `a method's own limit must be positive`() {
-        assertFailsWith<IllegalArgumentException> {
-            Dexter().assemble {
-                val code = addClass(T, DexType.Object).beginStaticMethod(M, 0)
-                code.returnVoid()
-                code.finish(maxCodeUnits = 0)
-            }
-        }
+        val builder = Dexter().beginFile().addClass(T, DexType.Object)
+
+        assertFailsWith<IllegalArgumentException> { builder.beginStaticMethod(M, 0, maxCodeUnits = 0) }
+        val code = builder.beginStaticMethod(M, 0)
+        code.returnVoid()
+        code.finish()
     }
 
     @Test
